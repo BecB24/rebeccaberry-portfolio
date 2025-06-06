@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rebecca Berry - CV</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">RB</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About</a>
+                <a href="index.html#projects">Projects</a>
+                <a href="index.html#skills">Skills & Education</a>
+                <a href="cv.html" class="active">CV</a>
+            </div>
+        </div>
+    </nav>
+
+   
+    <section class="cv-journey">
+        <h1>My Journey So Far</h1>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="timeline-date">2024</span>
+                <div class="timeline-content">
+                    <h3>HND Web Development & Design</h3>
+                    <p>New College Lanarkshire — Awaiting results</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <span class="timeline-date">2023</span>
+                <div class="timeline-content">
+                    <h3>HNC Web Development & Design</h3>
+                    <p>New College Lanarkshire — Graduated with A</p>
+                </div>
+            </div>
+            <!-- Add more timeline items as needed -->
+        </div>
+        
+    </section>
+
+    <section class="cv-skills">
+        <h2>Key Skills</h2>
+        <div class="skill-bar">
+            <span class="skill-title">HTML & CSS</span>
+            <div class="bar-bg"><div class="bar-fill" style="width: 90%"></div></div>
+        </div>
+        <div class="skill-bar">
+            <span class="skill-title">JavaScript</span>
+            <div class="bar-bg"><div class="bar-fill" style="width: 80%"></div></div>
+        </div>
+        <div class="skill-bar">
+            <span class="skill-title">Figma</span>
+            <div class="bar-bg"><div class="bar-fill" style="width: 85%"></div></div>
+        </div>
+        <div class="skill-bar">
+            <span class="skill-title">UI/UX</span>
+            <div class="bar-bg"><div class="bar-fill" style="width: 75%"></div></div>
+        </div>
+        <!-- Add more skills as needed -->
+    </section>
+    
+    <section class="cv-page">
+        <div class="cv-container">
+            <h1>My CV</h1>
+            <div class="cv-download-large">
+                <i class="fas fa-file-pdf"></i>
+                <p>Download my complete CV for more detailed information about my experience and qualifications.</p>
+                <a href="Rebecca Berry CV2025.pdf" class="cv-download-btn" id="cvDownloadBtn">
+                    <i class="fas fa-download"></i>
+                    Download CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="footer-content">
+            <p>Let's work together!</p>
+            <button class="contact-btn" onclick="openContactModal()">Contact Me</button>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeContactModal()">&times;</span>
+            <h2>Get in Touch</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-user"></i>
+                    <p>Rebecca Berry</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <p>07880362753</p>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:rebeccaeliz.berry@gmail.com" class="email-link">rebeccaeliz.berry@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openContactModal() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('contactModal');
+            if (event.target == modal) {
+                closeContactModal();
+            }
+        }
+
+        // Timeline and skill bar animation on scroll
+        function animateOnScroll() {
+            document.querySelectorAll('.timeline-item').forEach(item => {
+                const rect = item.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    item.classList.add('visible');
+                }
+            });
+            document.querySelectorAll('.bar-fill').forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    bar.classList.add('animate');
+                }
+            });
+        }
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('DOMContentLoaded', animateOnScroll);
+
+        // Download button click animation and delayed open in new tab
+        const downloadBtn = document.getElementById('cvDownloadBtn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                    window.open(this.href, '_blank');
+                }, 1500);
+            });
+        }
+    </script>
+</body>
+</html> 
