@@ -14,12 +14,17 @@
     <nav class="navbar">
         <div class="nav-container">
             <a href="#home" class="nav-logo">&lt;RB/&gt;</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about.html" class="active">About</a>
-                <a href="index.html#projects">Projects</a>
-                <a href="index.html#skills">Skills & Education</a>
-                <a href="cv.html" class="active">CV</a>
+            <button class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="index.html" onclick="closeMenuOnMobile()">Home</a>
+                <a href="about.html" onclick="closeMenuOnMobile()">About</a>
+                <a href="index.html#projects" onclick="closeMenuOnMobile()">Projects</a>
+                <a href="index.html#skills" onclick="closeMenuOnMobile()">Skills & Education</a>
+                <a href="cv.html" class="active" onclick="closeMenuOnMobile()">CV</a>
             </div>
         </div>
     </nav>
@@ -158,6 +163,21 @@
                     window.open(this.href, '_blank');
                 }, 1500);
             });
+        }
+
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+        function closeMenuOnMobile() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
         }
     </script>
 </body>
