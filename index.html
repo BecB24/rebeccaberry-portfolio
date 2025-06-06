@@ -20,12 +20,11 @@
                 <span></span>
             </button>
             <div class="nav-links" id="navLinks">
-                <a href="#home">Home</a>
-                <a href="about.html">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#skills">Skills & Education</a>
-                <a href="cv.html">CV</a>
-               
+                <a href="#home" onclick="closeMenuOnMobile()">Home</a>
+                <a href="about.html" onclick="closeMenuOnMobile()">About</a>
+                <a href="#projects" onclick="closeMenuOnMobile()">Projects</a>
+                <a href="#skills" onclick="closeMenuOnMobile()">Skills & Education</a>
+                <a href="cv.html" onclick="closeMenuOnMobile()">CV</a>
             </div>
         </div>
     </nav>
@@ -204,6 +203,15 @@
             const hamburger = document.querySelector('.hamburger');
             navLinks.classList.toggle('active');
             hamburger.classList.toggle('active');
+        }
+
+        function closeMenuOnMobile() {
+            const navLinks = document.getElementById('navLinks');
+            const hamburger = document.querySelector('.hamburger');
+            if (window.innerWidth <= 768) {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
         }
 
         // Close modal when clicking outside of it
