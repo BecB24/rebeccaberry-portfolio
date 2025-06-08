@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preload" href="styles.min.css" as="style" onload="this.rel='stylesheet'">
 </head>
 <body>
     <nav class="navbar">
@@ -33,7 +34,7 @@
         <div class="about-flex">
             <picture>
                 <source srcset="images/rebeccaBerry.webp" type="image/webp">
-                <img src="images/rebeccaBerry.jpg" alt="Rebecca Berry" class="about-img overlap-img" />
+                <img src="images/rebeccaBerry.jpg" alt="Rebecca Berry" class="about-img overlap-img" loading="lazy" />
             </picture>
             <div class="about-container">
                 <div class="about-content">
