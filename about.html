@@ -10,8 +10,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="preload" href="styles.min.css" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="images/hero-bg.webp" as="image" type="image/webp">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <nav class="navbar">
         <div class="nav-container">
             <a href="index.html" class="nav-logo">&lt;RB/&gt;</a>
@@ -30,7 +32,7 @@
             </div>
         </div>
     </nav>
-    <section class="about-section">
+    <section class="about-section" id="main-content">
         <div class="about-flex">
             <picture>
                 <source srcset="images/rebeccaBerry.webp" type="image/webp">
@@ -50,10 +52,10 @@
             <div class="footer-buttons">
                 <button class="contact-btn" onclick="openContactModal()">Contact Me</button>
                 <div class="social-links">
-                    <a href="https://github.com/BecB24" target="_blank" class="social-link">
+                    <a href="https://github.com/BecB24" target="_blank" class="social-link" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://twitter.com/yourusername" target="_blank" class="social-link">
+                    <a href="https://twitter.com/yourusername" target="_blank" class="social-link" aria-label="Twitter">
                         <i class="fab fa-twitter"></i>
                     </a>
                 </div>
