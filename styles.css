@@ -1,10 +1,10 @@
 :root {
     --primary-accent: #11B6F0;
     --secondary-accent: #08F597;
-    --bg-dark: #406470;
-    --bg-light: #40705D;
+    --bg-dark: #2a3d47;
+    --bg-light: #335c4d;
     --text-light: #ffffff;
-    --text-dark: #333333;
+    --text-dark: #222222;
 }
 
 * {
