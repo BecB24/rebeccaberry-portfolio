@@ -895,30 +895,35 @@ body {
 .cv-download-btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
+  justify-content: center;
+  gap: 0.6rem;
+
   background: linear-gradient(
     90deg,
     var(--primary-accent),
     var(--secondary-accent)
   );
   color: white;
-  padding: 0.85rem 1.35rem;
+
+  padding: 1rem 1.8rem;
   border-radius: 999px;
   text-decoration: none;
   font-weight: 900;
+  font-size: 1.05rem;
+
   transition:
     transform 0.15s ease,
     box-shadow 0.2s ease;
-  border: none;
-  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(255, 79, 183, 0.25);
 }
+
 .cv-download-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 26px rgba(77, 214, 255, 0.25);
+  box-shadow: 0 16px 32px rgba(77, 214, 255, 0.25);
 }
-.cv-download-btn.clicked {
-  animation: flash 0.6s;
-  transform: scale(1.06);
+
+.cv-download-btn i {
+  font-size: 1.1rem;
 }
 
 @keyframes flash {
