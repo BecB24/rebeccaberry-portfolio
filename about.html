@@ -1,102 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About Rebecca Berry</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+
+  <body>
     <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">&lt;RB/&gt;</a>
-            <button class="hamburger" aria-label="Open navigation menu" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <div class="nav-links" id="navLinks">
-                <a href="index.html">Home</a>
-                <a href="about.html" class="active">About</a>
-                <a href="index.html#projects">Projects</a>
-                <a href="index.html#skills">Skills & Education</a>
-                <a href="cv.html">CV</a>
-                
-            </div>
+      <div class="nav-container">
+        <a href="index.html" class="nav-logo">&lt;RB/&gt;</a>
+
+        <button
+          class="hamburger"
+          aria-label="Open navigation menu"
+          onclick="toggleMenu()"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-links" id="navLinks">
+          <a href="index.html" onclick="closeMenuOnMobile()">Home</a>
+          <a href="about.html" class="active" onclick="closeMenuOnMobile()"
+            >About</a
+          >
+          <a href="index.html#projects" onclick="closeMenuOnMobile()"
+            >Projects</a
+          >
+          <a href="index.html#skills" onclick="closeMenuOnMobile()"
+            >Skills &amp; Education</a
+          >
+          <a href="cv.html" onclick="closeMenuOnMobile()">CV</a>
         </div>
+      </div>
     </nav>
-    <section class="about-section" id="main-content">
-        <div class="about-flex">
-            <div class="about-container">
-                <img src="images/RebeccaBerryPhoto.png" alt="Rebecca Berry" class="about-img overlap-img" loading="lazy" />
-                <div class="about-content">
-                    <h1>About Me</h1>
-                    <p class="about-text">Hey there! I'm Rebecca — a creative junior web and design developer who loves turning ideas into interactive, eye-catching websites. I'm all about clean layouts, smooth animations, and making sure things just work (on every screen!). I've got a soft spot for great design and a growing love for code. Whether I'm building something new or refining the little details, I'm here to create digital experiences that people actually enjoy using.</p>
-                </div>
-            </div>
+
+    <main id="main-content" class="page">
+      <header class="page-hero">
+        <div class="page-hero-inner">
+          <p class="kicker">About me ✨</p>
+          <h1 class="gradient-text">
+            Design-minded developer. Detail-obsessed.
+          </h1>
+          <p class="page-subtitle">
+            I enjoy building clean, accessible interfaces that feel good to use
+            — with a strong focus on responsive design and UI polish.
+          </p>
         </div>
-    </section>
+      </header>
+
+      <section class="about-wrap" aria-label="About content">
+        <div class="about-card">
+          <div class="about-media">
+            <img
+              src="images/RebeccaBerryPhoto.png"
+              alt="Rebecca Berry"
+              class="about-img"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="about-content">
+            <h2 class="about-title">Hi, I’m Rebecca 👋</h2>
+
+            <p class="about-text">
+              I’m a junior front-end developer with a love for thoughtful UI and
+              clean, structured code. I enjoy turning ideas into responsive,
+              accessible websites that feel modern and easy to use.
+            </p>
+
+            <p class="about-text">
+              I’m especially interested in front-end development where design
+              and code meet — layout, interaction, and those little details that
+              make a site feel “finished”.
+            </p>
+
+            <div class="about-tags" aria-label="Rebecca's focus areas">
+              <span class="tag">Accessibility-first</span>
+              <span class="tag">Responsive UI</span>
+              <span class="tag">Clean code</span>
+              <span class="tag">UI polish</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="facts-grid" aria-label="Quick facts">
+          <div class="fact">
+            <span class="fact-emoji">💗</span>
+            <p>
+              <strong>Specialism:</strong> Accessible, responsive front-end
+              development
+            </p>
+          </div>
+
+          <div class="fact">
+            <span class="fact-emoji">✨</span>
+            <p>
+              <strong>Strength:</strong> Detail-oriented design systems and
+              consistent UI
+            </p>
+          </div>
+
+          <div class="fact">
+            <span class="fact-emoji">☕</span>
+            <p>
+              <strong>Driven by:</strong> Curiosity-led learning and problem
+              solving
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <footer>
-        <div class="footer-content">
-            <p>Let's work together!</p>
-            <div class="footer-buttons">
-                <button class="contact-btn" aria-label="Contact Me" onclick="openContactModal()">Contact Me</button>
-                <div class="social-links">
-                    <a href="https://github.com/BecB24" target="_blank" class="social-link" aria-label="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://twitter.com/yourusername" target="_blank" class="social-link" aria-label="Twitter">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </div>
-            </div>
+      <div class="footer-content">
+        <p>Let's work together!</p>
+
+        <div class="footer-buttons">
+          <button
+            class="contact-btn"
+            aria-label="Contact Me"
+            onclick="openContactModal()"
+          >
+            Contact Me
+          </button>
+
+          <div class="social-links">
+            <a
+              href="https://github.com/BecB24"
+              target="_blank"
+              rel="noreferrer"
+              class="social-link"
+              aria-label="GitHub"
+            >
+              <i class="fab fa-github"></i>
+            </a>
+            <a
+              href="https://x.com/rebeccaber15985"
+              target="_blank"
+              rel="noreferrer"
+              class="social-link"
+              aria-label="X"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
         </div>
+      </div>
     </footer>
+
     <!-- Contact Modal -->
-    <div id="contactModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeContactModal()">&times;</span>
-            <h2>Get in Touch</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-user"></i>
-                    <p>Rebecca Berry</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <p>07880362753</p>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:rebeccaeliz.berry@gmail.com" class="email-link">rebeccaeliz.berry@gmail.com</a>
-                </div>
-            </div>
+    <div id="contactModal" class="modal" aria-hidden="true">
+      <div
+        class="modal-content"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Contact modal"
+      >
+        <span
+          class="close-btn"
+          onclick="closeContactModal()"
+          role="button"
+          aria-label="Close contact modal"
+          >&times;</span
+        >
+        <h2>Get in Touch</h2>
+
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="fas fa-user"></i>
+            <p>Rebecca Berry</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-phone"></i>
+            <p>07880362753</p>
+          </div>
+          <div class="contact-item">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:rebeccaeliz.berry@gmail.com" class="email-link"
+              >rebeccaeliz.berry@gmail.com</a
+            >
+          </div>
         </div>
+      </div>
     </div>
+
     <script>
-        function openContactModal() {
-            document.getElementById('contactModal').style.display = 'flex';
+      function openContactModal() {
+        const modal = document.getElementById("contactModal");
+        modal.style.display = "flex";
+        modal.setAttribute("aria-hidden", "false");
+      }
+
+      function closeContactModal() {
+        const modal = document.getElementById("contactModal");
+        modal.style.display = "none";
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      function toggleMenu() {
+        const navLinks = document.getElementById("navLinks");
+        const hamburger = document.querySelector(".hamburger");
+        navLinks.classList.toggle("active");
+        hamburger.classList.toggle("active");
+      }
+
+      function closeMenuOnMobile() {
+        const navLinks = document.getElementById("navLinks");
+        const hamburger = document.querySelector(".hamburger");
+        if (window.innerWidth <= 768) {
+          navLinks.classList.remove("active");
+          hamburger.classList.remove("active");
         }
-        function closeContactModal() {
-            document.getElementById('contactModal').style.display = 'none';
-        }
-        function toggleMenu() {
-            const navLinks = document.getElementById('navLinks');
-            const hamburger = document.querySelector('.hamburger');
-            navLinks.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
-        window.onclick = function(event) {
-            const modal = document.getElementById('contactModal');
-            if (event.target == modal) {
-                closeContactModal();
-            }
-        }
+      }
+
+      window.onclick = function (event) {
+        const modal = document.getElementById("contactModal");
+        if (event.target == modal) closeContactModal();
+      };
     </script>
-</body>
+  </body>
 </html>
