@@ -127,6 +127,7 @@
       </section>
     </main>
 
+    <!-- FOOTER -->
     <footer>
       <div class="footer-content">
         <p>Let's work together!</p>
@@ -144,27 +145,28 @@
             <a
               href="https://github.com/BecB24"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               class="social-link"
               aria-label="GitHub"
             >
-              <i class="fab fa-github"></i>
+              <i class="fab fa-github" aria-hidden="true"></i>
             </a>
+
             <a
               href="https://x.com/rebeccaber15985"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               class="social-link"
               aria-label="X"
             >
-              <i class="fab fa-twitter"></i>
+              <i class="fab fa-twitter" aria-hidden="true"></i>
             </a>
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- Contact Modal -->
+    <!-- CONTACT MODAL -->
     <div id="contactModal" class="modal" aria-hidden="true">
       <div
         class="modal-content"
@@ -179,28 +181,68 @@
           aria-label="Close contact modal"
           >&times;</span
         >
+
         <h2>Get in Touch</h2>
 
         <div class="contact-info">
           <div class="contact-item">
-            <i class="fas fa-user"></i>
+            <i class="fas fa-user" aria-hidden="true"></i>
             <p>Rebecca Berry</p>
           </div>
+
           <div class="contact-item">
-            <i class="fas fa-phone"></i>
+            <i class="fas fa-phone" aria-hidden="true"></i>
             <p>07880362753</p>
           </div>
+
           <div class="contact-item">
-            <i class="fas fa-envelope"></i>
-            <a href="mailto:rebeccaeliz.berry@gmail.com" class="email-link"
-              >rebeccaeliz.berry@gmail.com</a
-            >
+            <i class="fas fa-envelope" aria-hidden="true"></i>
+            <a href="mailto:rebeccaeliz.berry@gmail.com" class="email-link">
+              rebeccaeliz.berry@gmail.com
+            </a>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- COOKIE BANNER -->
+    <div id="cookie-banner" class="cookie-banner" aria-label="Cookie consent">
+      <div class="cookie-content">
+        <p>
+          I use cookies to measure website traffic and improve the experience.
+          You can accept or reject analytics cookies at any time.
+        </p>
+
+        <div class="cookie-buttons">
+          <button id="accept-cookies" class="cookie-btn accept">Accept</button>
+          <button id="reject-cookies" class="cookie-btn reject">Reject</button>
+        </div>
+      </div>
+    </div>
+
     <script>
+      /* ===========
+         Site JS
+         =========== */
+
+      const GA_ID = "G-4KKHE8PRD0";
+
+      function loadAnalytics() {
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          window.dataLayer.push(arguments);
+        }
+        window.gtag = gtag;
+
+        gtag("js", new Date());
+        gtag("config", GA_ID);
+      }
+
       function openContactModal() {
         const modal = document.getElementById("contactModal");
         modal.style.display = "flex";
@@ -229,10 +271,41 @@
         }
       }
 
-      window.onclick = function (event) {
-        const modal = document.getElementById("contactModal");
-        if (event.target == modal) closeContactModal();
-      };
+      document.addEventListener("DOMContentLoaded", () => {
+        /* Close modal when clicking outside */
+        window.onclick = function (event) {
+          const modal = document.getElementById("contactModal");
+          if (event.target === modal) closeContactModal();
+        };
+
+        /* Cookie consent */
+        const banner = document.getElementById("cookie-banner");
+        const consent = localStorage.getItem("cookieConsent");
+
+        if (consent === "accepted") {
+          loadAnalytics();
+          banner.style.display = "none";
+        } else if (consent === "rejected") {
+          banner.style.display = "none";
+        } else {
+          banner.style.display = "block";
+        }
+      });
+
+      document
+        .getElementById("accept-cookies")
+        .addEventListener("click", () => {
+          localStorage.setItem("cookieConsent", "accepted");
+          loadAnalytics();
+          document.getElementById("cookie-banner").style.display = "none";
+        });
+
+      document
+        .getElementById("reject-cookies")
+        .addEventListener("click", () => {
+          localStorage.setItem("cookieConsent", "rejected");
+          document.getElementById("cookie-banner").style.display = "none";
+        });
     </script>
   </body>
 </html>

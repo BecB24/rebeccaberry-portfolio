@@ -1087,6 +1087,141 @@ footer {
   color: var(--secondary-accent) !important;
 }
 
+/* =========================
+   Cookie Banner (consistent everywhere)
+   ========================= */
+
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  z-index: 9999;
+
+  width: min(720px, calc(100% - 2rem));
+  max-width: 720px;
+
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  box-shadow: 0 16px 40px rgba(23, 32, 51, 0.14);
+  backdrop-filter: blur(12px);
+
+  border-radius: 18px;
+  padding: 14px 16px;
+
+  display: none; /* JS toggles this */
+}
+
+.cookie-banner::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 79, 183, 0.55),
+    rgba(77, 214, 255, 0.55)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* IMPORTANT: keep cookie layout isolated from page styles */
+.cookie-content {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  /* stops weird inherited centering on index hero */
+  text-align: left;
+}
+
+.cookie-content p {
+  margin: 0;
+  padding: 0;
+
+  color: var(--text-dark);
+  opacity: 0.92;
+
+  font-size: 0.98rem;
+  line-height: 1.35;
+
+  /* prevents the banner from becoming massive */
+  max-width: 52ch;
+}
+
+.cookie-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* Make sure buttons don’t inherit random styles */
+.cookie-btn {
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+
+  font-weight: 800;
+  border-radius: 999px;
+
+  padding: 10px 14px;
+  min-height: 40px;
+
+  font-size: 0.95rem;
+  line-height: 1;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.cookie-btn.accept {
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    var(--primary-accent),
+    var(--secondary-accent)
+  );
+  box-shadow: 0 10px 22px rgba(255, 79, 183, 0.22);
+}
+
+.cookie-btn.reject {
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text-dark);
+  border: 1px solid rgba(23, 32, 51, 0.14);
+}
+
+.cookie-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Mobile: stack cleanly */
+@media (max-width: 620px) {
+  .cookie-content {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .cookie-content p {
+    max-width: none;
+  }
+
+  .cookie-buttons {
+    justify-content: center;
+  }
+}
 /* Responsive */
 @media (max-width: 900px) {
   .about-card {
