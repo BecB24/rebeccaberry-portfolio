@@ -342,6 +342,10 @@
           </div>
         </div>
       </div>
+      <p class="site-update">
+        © 2026 Rebecca Berry • Portfolio last updated
+        <span id="lastUpdated"></span>
+      </p>
     </footer>
 
     <!-- CONTACT MODAL -->
@@ -531,6 +535,14 @@
           if (el) observer.observe(el);
         });
       });
+    </script>
+    <script>
+      const lastUpdated = new Date(document.lastModified);
+      document.getElementById("lastUpdated").textContent =
+        lastUpdated.toLocaleDateString("en-GB", {
+          month: "long",
+          year: "numeric",
+        });
     </script>
   </body>
 </html>

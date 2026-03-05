@@ -964,6 +964,15 @@ footer {
   margin-top: 1rem;
   flex-wrap: wrap;
 }
+.footer-bottom {
+  text-align: center;
+}
+
+.site-update {
+  margin-top: 45px;
+  font-size: 0.85rem;
+  color: #777;
+}
 
 .social-links {
   display: flex;
@@ -1006,7 +1015,15 @@ footer {
 .contact-btn:hover {
   transform: translateY(-2px);
 }
+.footer-bottom {
+  margin-top: 30px;
+  text-align: center;
+}
 
+.site-update {
+  font-size: 0.85rem;
+  color: #777;
+}
 /* Modal */
 .modal {
   display: none;
