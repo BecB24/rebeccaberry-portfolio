@@ -55,7 +55,6 @@
     </nav>
 
     <main id="main-content">
-      <!-- HERO -->
       <section id="home" class="hero">
         <div class="hero-content">
           <h1 class="gradient-text">
@@ -88,7 +87,6 @@
         </div>
       </section>
 
-      <!-- SKILLS -->
       <section id="skills" class="skills">
         <h2>Skills &amp; Education</h2>
 
@@ -105,8 +103,13 @@
               >
                 <div class="card-inner">
                   <div class="card-front">
+                    <span class="card-info" aria-label="Click to see more">
+                      <i class="fas fa-info-circle" aria-hidden="true"></i>
+                      <span class="tooltip">Click to see more</span>
+                    </span>
                     <h4>Frontend Development</h4>
                   </div>
+
                   <div class="card-back">
                     <ul>
                       <li>HTML5 &amp; CSS3</li>
@@ -126,8 +129,13 @@
               >
                 <div class="card-inner">
                   <div class="card-front">
+                    <span class="card-info" aria-label="Click to see more">
+                      <i class="fas fa-info-circle" aria-hidden="true"></i>
+                      <span class="tooltip">Click to see more</span>
+                    </span>
                     <h4>Design Tools</h4>
                   </div>
+
                   <div class="card-back">
                     <ul>
                       <li>Figma</li>
@@ -147,8 +155,13 @@
               >
                 <div class="card-inner">
                   <div class="card-front">
+                    <span class="card-info" aria-label="Click to see more">
+                      <i class="fas fa-info-circle" aria-hidden="true"></i>
+                      <span class="tooltip">Click to see more</span>
+                    </span>
                     <h4>Other Skills</h4>
                   </div>
+
                   <div class="card-back">
                     <ul>
                       <li>Git &amp; Version Control</li>
@@ -197,7 +210,6 @@
         </div>
       </section>
 
-      <!-- PROJECTS -->
       <section id="projects" class="projects">
         <h2>Projects</h2>
 
@@ -305,7 +317,6 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer>
       <div class="footer-content">
         <p>Let's work together!</p>
@@ -341,14 +352,14 @@
             </a>
           </div>
         </div>
+
+        <p class="site-update">
+          © 2026 Rebecca Berry • Portfolio last updated
+          <span id="lastUpdated"></span>
+        </p>
       </div>
-      <p class="site-update">
-        © 2026 Rebecca Berry • Portfolio last updated
-        <span id="lastUpdated"></span>
-      </p>
     </footer>
 
-    <!-- CONTACT MODAL -->
     <div id="contactModal" class="modal" aria-hidden="true">
       <div
         class="modal-content"
@@ -387,10 +398,8 @@
       </div>
     </div>
 
-    <!-- COOKIE BANNER -->
     <div id="cookie-banner" class="cookie-banner" aria-label="Cookie consent">
       <div class="cookie-content">
-        <p></p>
         <p>
           I use cookies to measure website traffic and improve the experience.
           You can accept or reject analytics cookies at any time.
@@ -404,10 +413,6 @@
     </div>
 
     <script>
-      /* ===========
-         Site JS
-         =========== */
-
       const GA_ID = "G-4KKHE8PRD0";
 
       function loadAnalytics() {
@@ -455,13 +460,11 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => {
-        /* Close modal when clicking outside */
         window.onclick = function (event) {
           const modal = document.getElementById("contactModal");
           if (event.target === modal) closeContactModal();
         };
 
-        /* Flip skill cards (click + keyboard) */
         document.querySelectorAll(".skill-card").forEach((card) => {
           card.addEventListener("click", () =>
             card.classList.toggle("flipped"),
@@ -474,7 +477,6 @@
           });
         });
 
-        /* Cookie consent */
         const banner = document.getElementById("cookie-banner");
         const consent = localStorage.getItem("cookieConsent");
 
@@ -502,7 +504,6 @@
             banner.style.display = "none";
           });
 
-        /* Track CV download clicks (only after analytics exists) */
         document.querySelectorAll('a[href$=".pdf"]').forEach((link) => {
           link.addEventListener("click", () => {
             if (typeof window.gtag === "function") {
@@ -511,18 +512,15 @@
           });
         });
 
-        /* Track scrolling to sections on Home */
         const targets = ["projects", "skills"];
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
               if (entry.isIntersecting) {
                 const id = entry.target.id;
-
                 if (typeof window.gtag === "function") {
                   window.gtag("event", "view_section", { section_name: id });
                 }
-
                 observer.unobserve(entry.target);
               }
             });
@@ -534,15 +532,14 @@
           const el = document.getElementById(id);
           if (el) observer.observe(el);
         });
+
+        const lastUpdated = new Date(document.lastModified);
+        document.getElementById("lastUpdated").textContent =
+          lastUpdated.toLocaleDateString("en-GB", {
+            month: "long",
+            year: "numeric",
+          });
       });
-    </script>
-    <script>
-      const lastUpdated = new Date(document.lastModified);
-      document.getElementById("lastUpdated").textContent =
-        lastUpdated.toLocaleDateString("en-GB", {
-          month: "long",
-          year: "numeric",
-        });
     </script>
   </body>
 </html>
