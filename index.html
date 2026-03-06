@@ -51,6 +51,25 @@
           >
           <a href="cv.html" onclick="closeMenuOnMobile()">CV</a>
         </div>
+
+        <button
+          id="themeToggle"
+          class="theme-switch"
+          type="button"
+          aria-label="Toggle between Fun and Pro mode"
+          aria-pressed="false"
+        >
+          <span class="theme-label theme-label-left">Fun</span>
+
+          <span class="theme-track" aria-hidden="true">
+            <span class="theme-thumb">
+              <span class="theme-dot theme-dot-large"></span>
+              <span class="theme-dot theme-dot-small"></span>
+            </span>
+          </span>
+
+          <span class="theme-label theme-label-right">Pro</span>
+        </button>
       </div>
     </nav>
 
@@ -460,15 +479,39 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => {
+        const themeToggle = document.getElementById("themeToggle");
+
+        function applyTheme(theme) {
+          if (theme === "pro") {
+            document.documentElement.setAttribute("data-theme", "pro");
+            themeToggle.setAttribute("aria-pressed", "true");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+            themeToggle.setAttribute("aria-pressed", "false");
+          }
+        }
+
+        const savedTheme = localStorage.getItem("themeMode") || "fun";
+        applyTheme(savedTheme);
+
+        themeToggle.addEventListener("click", () => {
+          const isPro =
+            document.documentElement.getAttribute("data-theme") === "pro";
+          const newTheme = isPro ? "fun" : "pro";
+          localStorage.setItem("themeMode", newTheme);
+          applyTheme(newTheme);
+        });
+
         window.onclick = function (event) {
           const modal = document.getElementById("contactModal");
           if (event.target === modal) closeContactModal();
         };
 
         document.querySelectorAll(".skill-card").forEach((card) => {
-          card.addEventListener("click", () =>
-            card.classList.toggle("flipped"),
-          );
+          card.addEventListener("click", () => {
+            card.classList.toggle("flipped");
+          });
+
           card.addEventListener("keydown", (e) => {
             if (e.key === "Enter" || e.key === " ") {
               e.preventDefault();

@@ -23,6 +23,38 @@
   --hero-pad-bot: clamp(2.25rem, 5vw, 4rem);
 }
 
+/* =========================
+   PRO MODE
+   ========================= */
+
+html[data-theme="pro"] {
+  --primary-accent: #5c6784;
+  --secondary-accent: #50723c;
+
+  --bg-dark: #1d263b;
+  --bg-light: #5c6784;
+
+  --bg-1: #fafaf5;
+  --bg-2: #f2f3d9;
+
+  --text-dark: #1d263b;
+  --text-light: #ffffff;
+
+  --card: rgba(255, 255, 255, 0.9);
+  --stroke: rgba(29, 38, 59, 0.08);
+  --shadow: 0 14px 40px rgba(29, 38, 59, 0.1);
+
+  --pro-beige: #f2f3d9;
+  --pro-fern: #50723c;
+  --pro-coral: #fa824c;
+  --pro-slate: #5c6784;
+  --pro-navy: #1d263b;
+}
+
+/* =========================
+   Base / Reset
+   ========================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -38,9 +70,37 @@ body {
   line-height: 1.6;
   color: var(--text-dark);
   background:
-    radial-gradient(circle at 10% 10%, #ffe7f5 0%, transparent 45%),
-    radial-gradient(circle at 90% 20%, #dff7ff 0%, transparent 50%),
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(255, 79, 183, 0.14) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 90% 20%,
+      rgba(77, 214, 255, 0.14) 0%,
+      transparent 50%
+    ),
     linear-gradient(135deg, var(--bg-1), var(--bg-2));
+}
+
+html[data-theme="pro"] body {
+  background:
+    radial-gradient(
+      circle at 12% 15%,
+      rgba(242, 243, 217, 0.85) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(250, 130, 76, 0.1) 0%,
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 60% 80%,
+      rgba(92, 103, 132, 0.12) 0%,
+      transparent 42%
+    ),
+    linear-gradient(135deg, #fafaf5, #f2f3d9);
 }
 
 .skip-link {
@@ -72,7 +132,10 @@ body {
   padding-top: calc(var(--nav-h) + 1rem);
 }
 
-/* Navigation */
+/* =========================
+   Navigation
+   ========================= */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -91,6 +154,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .nav-logo {
@@ -104,6 +168,7 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
+  margin-left: auto;
 }
 
 .nav-links a {
@@ -143,6 +208,128 @@ body {
   color: var(--primary-accent);
 }
 
+html[data-theme="pro"] .nav-links a:hover {
+  color: var(--pro-coral);
+}
+
+html[data-theme="pro"] .nav-links a::after {
+  background: var(--pro-coral);
+}
+
+/* =========================
+   Theme Toggle
+   ========================= */
+
+.theme-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: 1rem;
+  cursor: pointer;
+  font: inherit;
+  flex-shrink: 0;
+}
+
+.theme-label {
+  font-weight: 900;
+  font-size: 0.98rem;
+  line-height: 1;
+  transition:
+    opacity 0.2s ease,
+    color 0.2s ease;
+}
+
+.theme-label-left {
+  color: var(--text-dark);
+  opacity: 1;
+}
+
+.theme-label-right {
+  color: var(--text-dark);
+  opacity: 0.28;
+}
+
+.theme-track {
+  width: 76px;
+  height: 42px;
+  border-radius: 999px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px;
+  background: linear-gradient(
+    135deg,
+    var(--primary-accent),
+    var(--secondary-accent)
+  );
+  box-shadow: 0 8px 18px rgba(23, 32, 51, 0.12);
+  transition: all 0.25s ease;
+  flex-shrink: 0;
+}
+
+.theme-thumb {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #ffffff;
+  position: relative;
+  transform: translateX(0);
+  transition: transform 0.25s ease;
+  box-shadow: 0 4px 10px rgba(23, 32, 51, 0.12);
+}
+
+.theme-dot {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.theme-dot-large {
+  width: 10px;
+  height: 10px;
+  right: -6px;
+  top: 5px;
+}
+
+.theme-dot-small {
+  width: 5px;
+  height: 5px;
+  right: 8px;
+  top: 16px;
+}
+
+.theme-switch:hover .theme-track {
+  box-shadow: 0 10px 22px rgba(23, 32, 51, 0.16);
+}
+
+html[data-theme="pro"] .theme-label-left {
+  opacity: 0.28;
+}
+
+html[data-theme="pro"] .theme-label-right {
+  opacity: 1;
+}
+
+html[data-theme="pro"] .theme-thumb {
+  transform: translateX(34px);
+}
+
+html[data-theme="pro"] .theme-track {
+  background: linear-gradient(135deg, #5c6784 0%, #50723c 100%);
+  box-shadow: 0 8px 18px rgba(29, 38, 59, 0.14);
+}
+
+html[data-theme="pro"] .theme-switch:hover .theme-track {
+  box-shadow: 0 10px 22px rgba(80, 114, 60, 0.18);
+}
+
+/* =========================
+   Hamburger
+   ========================= */
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -176,7 +363,10 @@ body {
   transform: translateY(-9px) rotate(-45deg);
 }
 
-/* Buttons */
+/* =========================
+   Buttons
+   ========================= */
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -242,7 +432,24 @@ body {
   font-size: 1.1rem;
 }
 
-/* Headings */
+html[data-theme="pro"] .cv-download-btn,
+html[data-theme="pro"] .contact-btn,
+html[data-theme="pro"] .btn.primary,
+html[data-theme="pro"] .card-front {
+  background: linear-gradient(135deg, #5c6784 0%, #50723c 100%);
+  box-shadow: 0 10px 24px rgba(29, 38, 59, 0.14);
+}
+
+html[data-theme="pro"] .cv-download-btn:hover,
+html[data-theme="pro"] .contact-btn:hover,
+html[data-theme="pro"] .btn.primary:hover {
+  box-shadow: 0 16px 32px rgba(80, 114, 60, 0.18);
+}
+
+/* =========================
+   Headings
+   ========================= */
+
 .section-title {
   text-align: center;
   font-size: 2.2rem;
@@ -274,7 +481,10 @@ body {
   color: transparent;
 }
 
-/* Hero */
+/* =========================
+   Hero
+   ========================= */
+
 .hero {
   min-height: 100vh;
   display: grid;
@@ -302,6 +512,26 @@ body {
     ),
     radial-gradient(circle at 50% 85%, rgba(8, 245, 151, 0.16), transparent 55%);
   z-index: 1;
+}
+
+html[data-theme="pro"] .hero::before,
+html[data-theme="pro"] .page-hero::before {
+  background:
+    radial-gradient(
+      circle at 18% 25%,
+      rgba(242, 243, 217, 0.8),
+      transparent 45%
+    ),
+    radial-gradient(
+      circle at 82% 30%,
+      rgba(250, 130, 76, 0.08),
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 55% 92%,
+      rgba(92, 103, 132, 0.12),
+      transparent 55%
+    );
 }
 
 .hero::after {
@@ -337,6 +567,10 @@ body {
   opacity: 0.9;
   z-index: 2;
   animation: floatBubbles 10s ease-in-out infinite;
+}
+
+html[data-theme="pro"] .hero::after {
+  opacity: 0.35;
 }
 
 @keyframes floatBubbles {
@@ -406,7 +640,10 @@ body {
   }
 }
 
-/* Sections */
+/* =========================
+   Sections
+   ========================= */
+
 .skills,
 .projects,
 .cv-journey,
@@ -457,7 +694,10 @@ body {
   text-align: center;
 }
 
-/* Skills cards */
+/* =========================
+   Skills Cards
+   ========================= */
+
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -508,7 +748,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
 }
 
 .card-front h4 {
@@ -567,6 +806,10 @@ body {
   color: var(--secondary-accent);
 }
 
+html[data-theme="pro"] .card-info:hover i {
+  color: var(--pro-coral);
+}
+
 .tooltip {
   position: absolute;
   bottom: 130%;
@@ -588,7 +831,10 @@ body {
   transform: translateY(0);
 }
 
-/* Education */
+/* =========================
+   Education
+   ========================= */
+
 .education-timeline {
   max-width: 800px;
   margin: 0 auto;
@@ -622,7 +868,10 @@ body {
   opacity: 0.9;
 }
 
-/* Projects */
+/* =========================
+   Projects
+   ========================= */
+
 .projects-grid {
   max-width: 1200px;
   margin: 0 auto;
@@ -666,7 +915,14 @@ body {
   color: var(--secondary-accent);
 }
 
-/* About / CV page hero */
+html[data-theme="pro"] .project-link:hover {
+  color: var(--pro-coral);
+}
+
+/* =========================
+   About / CV Page Hero
+   ========================= */
+
 .page-hero {
   padding: var(--hero-pad-top) var(--gutter) var(--hero-pad-bot);
   position: relative;
@@ -721,7 +977,10 @@ body {
   margin-top: var(--section-gap);
 }
 
-/* About */
+/* =========================
+   About
+   ========================= */
+
 .about-wrap {
   padding-bottom: var(--section-gap);
 }
@@ -786,6 +1045,11 @@ body {
   border: 1px solid rgba(255, 79, 183, 0.18);
 }
 
+html[data-theme="pro"] .tag {
+  background: rgba(242, 243, 217, 0.8);
+  border: 1px solid rgba(92, 103, 132, 0.18);
+}
+
 .facts-grid {
   max-width: 1050px;
   margin: 1.2rem auto 0;
@@ -815,7 +1079,10 @@ body {
   opacity: 0.92;
 }
 
-/* CV */
+/* =========================
+   CV
+   ========================= */
+
 .cv-journey,
 .cv-skills,
 .cv-page {
@@ -984,12 +1251,19 @@ body {
   opacity: 0.75;
 }
 
-/* Footer */
+/* =========================
+   Footer
+   ========================= */
+
 footer {
   background: rgba(23, 32, 51, 0.92);
   color: var(--text-light);
   padding: 3rem var(--gutter);
   text-align: center;
+}
+
+html[data-theme="pro"] footer {
+  background: rgba(29, 38, 59, 0.96);
 }
 
 .footer-content {
@@ -1030,10 +1304,18 @@ footer {
   background: rgba(255, 255, 255, 0.12);
 }
 
+html[data-theme="pro"] .social-link {
+  background: rgba(92, 103, 132, 0.16);
+}
+
 .social-link:hover {
   color: var(--secondary-accent);
   background: rgba(255, 255, 255, 0.18);
   transform: translateY(-2px);
+}
+
+html[data-theme="pro"] .social-link:hover {
+  color: var(--pro-coral);
 }
 
 .contact-btn {
@@ -1056,7 +1338,10 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Modal */
+/* =========================
+   Modal
+   ========================= */
+
 .modal {
   display: none;
   position: fixed;
@@ -1141,7 +1426,10 @@ footer {
   color: var(--secondary-accent) !important;
 }
 
-/* Cookie banner */
+/* =========================
+   Cookie Banner
+   ========================= */
+
 .cookie-banner {
   position: fixed;
   left: 50%;
@@ -1240,7 +1528,10 @@ footer {
   transform: translateY(-2px);
 }
 
-/* Responsive */
+/* =========================
+   Responsive
+   ========================= */
+
 @media (max-width: 900px) {
   .about-card {
     grid-template-columns: 1fr;
@@ -1290,6 +1581,10 @@ footer {
   .nav-links a {
     margin: 1rem 0;
     font-size: 1.1rem;
+  }
+
+  .theme-switch {
+    margin-left: 0;
   }
 
   .projects-grid,

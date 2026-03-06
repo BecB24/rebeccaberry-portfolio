@@ -6,7 +6,7 @@
     <title>Rebecca Berry - CV</title>
     <meta
       name="description"
-      content="Rebecca Berry –Front-End Developer specialising in accessible, responsive websites built with HTML, CSS and JavaScript. View projects, skills and CV."
+      content="View Rebecca Berry’s CV, education journey, technical skills, and downloadable resume as a Front-End Developer."
     />
     <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
     <link rel="apple-touch-icon" href="images/logo.svg" />
@@ -53,6 +53,25 @@
           >
           <a href="cv.html" class="active" onclick="closeMenuOnMobile()">CV</a>
         </div>
+
+        <button
+          id="themeToggle"
+          class="theme-switch"
+          type="button"
+          aria-label="Toggle between Fun and Pro mode"
+          aria-pressed="false"
+        >
+          <span class="theme-label theme-label-left">Fun</span>
+
+          <span class="theme-track" aria-hidden="true">
+            <span class="theme-thumb">
+              <span class="theme-dot theme-dot-large"></span>
+              <span class="theme-dot theme-dot-small"></span>
+            </span>
+          </span>
+
+          <span class="theme-label theme-label-right">Pro</span>
+        </button>
       </div>
     </nav>
 
@@ -61,14 +80,14 @@
         <div class="page-hero-inner">
           <h1 class="gradient-text">Front-End Developer</h1>
           <p class="page-subtitle">
-            A quick overview of my education journey and key skills — plus a
+            A quick overview of my education journey, technical skills, and a
             downloadable CV.
           </p>
 
-          <div class="hero-cta" style="margin-top: 1.2rem">
+          <div class="hero-cta" style="margin-top: 1.25rem">
             <a
               href="RebeccaBerryCVResume.pdf"
-              class="cv-download-btn js-cv-download"
+              class="cv-download-btn"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -150,9 +169,10 @@
         </div>
 
         <div class="skill-bar">
-          <span class="skill-title">
-            DevOps <span class="skill-note">(AWS, CodePipeline, GitHub)</span>
-          </span>
+          <span class="skill-title"
+            >DevOps
+            <span class="skill-note">(AWS, CodePipeline, GitHub)</span></span
+          >
           <div class="bar-bg">
             <div class="bar-fill" style="width: 50%"></div>
           </div>
@@ -167,12 +187,13 @@
             <i class="fas fa-file-pdf" aria-hidden="true"></i>
             <p>
               Download my complete CV for more detailed information about my
-              experience and qualifications.
+              experience, education, and technical skills.
             </p>
 
             <a
               href="RebeccaBerryCVResume.pdf"
-              class="cv-download-btn js-cv-download"
+              class="cv-download-btn"
+              id="cvDownloadBtn"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -186,7 +207,6 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer>
       <div class="footer-content">
         <p>Let's work together!</p>
@@ -204,7 +224,7 @@
             <a
               href="https://github.com/BecB24"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noreferrer"
               class="social-link"
               aria-label="GitHub"
             >
@@ -214,7 +234,7 @@
             <a
               href="https://x.com/rebeccaber15985"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noreferrer"
               class="social-link"
               aria-label="X"
             >
@@ -222,14 +242,14 @@
             </a>
           </div>
         </div>
+
+        <p class="site-update">
+          © 2026 Rebecca Berry • Portfolio last updated
+          <span id="lastUpdated"></span>
+        </p>
       </div>
-      <p class="site-update">
-        © 2026 Rebecca Berry • Portfolio last updated
-        <span id="lastUpdated"></span>
-      </p>
     </footer>
 
-    <!-- CONTACT MODAL -->
     <div id="contactModal" class="modal" aria-hidden="true">
       <div
         class="modal-content"
@@ -252,10 +272,12 @@
             <i class="fas fa-user" aria-hidden="true"></i>
             <p>Rebecca Berry</p>
           </div>
+
           <div class="contact-item">
             <i class="fas fa-phone" aria-hidden="true"></i>
             <p>07880362753</p>
           </div>
+
           <div class="contact-item">
             <i class="fas fa-envelope" aria-hidden="true"></i>
             <a href="mailto:rebeccaeliz.berry@gmail.com" class="email-link">
@@ -266,7 +288,6 @@
       </div>
     </div>
 
-    <!-- COOKIE BANNER -->
     <div id="cookie-banner" class="cookie-banner" aria-label="Cookie consent">
       <div class="cookie-content">
         <p>
@@ -282,10 +303,6 @@
     </div>
 
     <script>
-      /* ===========
-         Site JS
-         =========== */
-
       const GA_ID = "G-4KKHE8PRD0";
 
       function loadAnalytics() {
@@ -332,27 +349,55 @@
         }
       }
 
-      function animateOnScroll() {
-        document.querySelectorAll(".timeline-item").forEach((item) => {
-          const rect = item.getBoundingClientRect();
-          if (rect.top < window.innerHeight - 120)
-            item.classList.add("visible");
-        });
-
-        document.querySelectorAll(".bar-fill").forEach((bar) => {
-          const rect = bar.getBoundingClientRect();
-          if (rect.top < window.innerHeight - 120) bar.classList.add("animate");
-        });
-      }
-
       document.addEventListener("DOMContentLoaded", () => {
-        /* Close modal when clicking outside */
+        const themeToggle = document.getElementById("themeToggle");
+
+        function applyTheme(theme) {
+          if (theme === "pro") {
+            document.documentElement.setAttribute("data-theme", "pro");
+            themeToggle.setAttribute("aria-pressed", "true");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+            themeToggle.setAttribute("aria-pressed", "false");
+          }
+        }
+
+        const savedTheme = localStorage.getItem("themeMode") || "fun";
+        applyTheme(savedTheme);
+
+        themeToggle.addEventListener("click", () => {
+          const isPro =
+            document.documentElement.getAttribute("data-theme") === "pro";
+          const newTheme = isPro ? "fun" : "pro";
+          localStorage.setItem("themeMode", newTheme);
+          applyTheme(newTheme);
+        });
+
         window.onclick = function (event) {
           const modal = document.getElementById("contactModal");
           if (event.target === modal) closeContactModal();
         };
 
-        /* Cookie consent */
+        function animateOnScroll() {
+          document.querySelectorAll(".timeline-item").forEach((item) => {
+            const rect = item.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+              item.classList.add("visible");
+            }
+          });
+
+          document.querySelectorAll(".bar-fill").forEach((bar) => {
+            const rect = bar.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+              bar.classList.add("animate");
+            }
+          });
+        }
+
+        window.addEventListener("scroll", animateOnScroll);
+        window.addEventListener("DOMContentLoaded", animateOnScroll);
+        animateOnScroll();
+
         const banner = document.getElementById("cookie-banner");
         const consent = localStorage.getItem("cookieConsent");
 
@@ -380,30 +425,21 @@
             banner.style.display = "none";
           });
 
-        /* Scroll animations */
-        animateOnScroll();
-        window.addEventListener("scroll", animateOnScroll);
-
-        /* Download button animation + analytics event (only if gtag exists) */
-        document.querySelectorAll(".js-cv-download").forEach((btn) => {
-          btn.addEventListener("click", () => {
-            btn.classList.add("clicked");
-            setTimeout(() => btn.classList.remove("clicked"), 600);
-
+        document.querySelectorAll('a[href$=".pdf"]').forEach((link) => {
+          link.addEventListener("click", () => {
             if (typeof window.gtag === "function") {
-              window.gtag("event", "download_cv", { link_url: btn.href });
+              window.gtag("event", "download_cv", { link_url: link.href });
             }
           });
         });
+
+        const lastUpdated = new Date(document.lastModified);
+        document.getElementById("lastUpdated").textContent =
+          lastUpdated.toLocaleDateString("en-GB", {
+            month: "long",
+            year: "numeric",
+          });
       });
-    </script>
-    <script>
-      const lastUpdated = new Date(document.lastModified);
-      document.getElementById("lastUpdated").textContent =
-        lastUpdated.toLocaleDateString("en-GB", {
-          month: "long",
-          year: "numeric",
-        });
     </script>
   </body>
 </html>

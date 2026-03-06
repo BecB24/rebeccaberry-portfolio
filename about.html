@@ -6,7 +6,7 @@
     <title>About Rebecca Berry</title>
     <meta
       name="description"
-      content="Rebecca Berry – Front-End Developer specialising in accessible, responsive websites built with HTML, CSS and JavaScript. View projects, skills and CV."
+      content="Learn more about Rebecca Berry, a Front-End Developer focused on accessible, responsive websites, clean code, and thoughtful design."
     />
     <link rel="icon" type="image/svg+xml" href="images/logo.svg" />
     <link rel="apple-touch-icon" href="images/logo.svg" />
@@ -55,6 +55,25 @@
           >
           <a href="cv.html" onclick="closeMenuOnMobile()">CV</a>
         </div>
+
+        <button
+          id="themeToggle"
+          class="theme-switch"
+          type="button"
+          aria-label="Toggle between Fun and Pro mode"
+          aria-pressed="false"
+        >
+          <span class="theme-label theme-label-left">Fun</span>
+
+          <span class="theme-track" aria-hidden="true">
+            <span class="theme-thumb">
+              <span class="theme-dot theme-dot-large"></span>
+              <span class="theme-dot theme-dot-small"></span>
+            </span>
+          </span>
+
+          <span class="theme-label theme-label-right">Pro</span>
+        </button>
       </div>
     </nav>
 
@@ -93,8 +112,8 @@
 
             <p class="about-text">
               I’m especially interested in front-end development where design
-              and code meet — layout, interaction, and those little details that
-              make a site feel “finished”.
+              and code meet — layout, interaction, and the small details that
+              make a site feel polished and complete.
             </p>
 
             <div class="about-tags" aria-label="Rebecca's focus areas">
@@ -131,7 +150,6 @@
       </section>
     </main>
 
-    <!-- FOOTER -->
     <footer>
       <div class="footer-content">
         <p>Let's work together!</p>
@@ -149,7 +167,7 @@
             <a
               href="https://github.com/BecB24"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noreferrer"
               class="social-link"
               aria-label="GitHub"
             >
@@ -159,7 +177,7 @@
             <a
               href="https://x.com/rebeccaber15985"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noreferrer"
               class="social-link"
               aria-label="X"
             >
@@ -167,14 +185,14 @@
             </a>
           </div>
         </div>
+
+        <p class="site-update">
+          © 2026 Rebecca Berry • Portfolio last updated
+          <span id="lastUpdated"></span>
+        </p>
       </div>
-      <p class="site-update">
-        © 2026 Rebecca Berry • Portfolio last updated
-        <span id="lastUpdated"></span>
-      </p>
     </footer>
 
-    <!-- CONTACT MODAL -->
     <div id="contactModal" class="modal" aria-hidden="true">
       <div
         class="modal-content"
@@ -213,7 +231,6 @@
       </div>
     </div>
 
-    <!-- COOKIE BANNER -->
     <div id="cookie-banner" class="cookie-banner" aria-label="Cookie consent">
       <div class="cookie-content">
         <p>
@@ -229,10 +246,6 @@
     </div>
 
     <script>
-      /* ===========
-         Site JS
-         =========== */
-
       const GA_ID = "G-4KKHE8PRD0";
 
       function loadAnalytics() {
@@ -280,13 +293,34 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => {
-        /* Close modal when clicking outside */
+        const themeToggle = document.getElementById("themeToggle");
+
+        function applyTheme(theme) {
+          if (theme === "pro") {
+            document.documentElement.setAttribute("data-theme", "pro");
+            themeToggle.setAttribute("aria-pressed", "true");
+          } else {
+            document.documentElement.removeAttribute("data-theme");
+            themeToggle.setAttribute("aria-pressed", "false");
+          }
+        }
+
+        const savedTheme = localStorage.getItem("themeMode") || "fun";
+        applyTheme(savedTheme);
+
+        themeToggle.addEventListener("click", () => {
+          const isPro =
+            document.documentElement.getAttribute("data-theme") === "pro";
+          const newTheme = isPro ? "fun" : "pro";
+          localStorage.setItem("themeMode", newTheme);
+          applyTheme(newTheme);
+        });
+
         window.onclick = function (event) {
           const modal = document.getElementById("contactModal");
           if (event.target === modal) closeContactModal();
         };
 
-        /* Cookie consent */
         const banner = document.getElementById("cookie-banner");
         const consent = localStorage.getItem("cookieConsent");
 
@@ -298,30 +332,29 @@
         } else {
           banner.style.display = "block";
         }
+
+        document
+          .getElementById("accept-cookies")
+          .addEventListener("click", () => {
+            localStorage.setItem("cookieConsent", "accepted");
+            loadAnalytics();
+            banner.style.display = "none";
+          });
+
+        document
+          .getElementById("reject-cookies")
+          .addEventListener("click", () => {
+            localStorage.setItem("cookieConsent", "rejected");
+            banner.style.display = "none";
+          });
+
+        const lastUpdated = new Date(document.lastModified);
+        document.getElementById("lastUpdated").textContent =
+          lastUpdated.toLocaleDateString("en-GB", {
+            month: "long",
+            year: "numeric",
+          });
       });
-
-      document
-        .getElementById("accept-cookies")
-        .addEventListener("click", () => {
-          localStorage.setItem("cookieConsent", "accepted");
-          loadAnalytics();
-          document.getElementById("cookie-banner").style.display = "none";
-        });
-
-      document
-        .getElementById("reject-cookies")
-        .addEventListener("click", () => {
-          localStorage.setItem("cookieConsent", "rejected");
-          document.getElementById("cookie-banner").style.display = "none";
-        });
-    </script>
-    <script>
-      const lastUpdated = new Date(document.lastModified);
-      document.getElementById("lastUpdated").textContent =
-        lastUpdated.toLocaleDateString("en-GB", {
-          month: "long",
-          year: "numeric",
-        });
     </script>
   </body>
 </html>
