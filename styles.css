@@ -1360,6 +1360,9 @@ html[data-theme="pro"] .contact-item {
   mask-composite: exclude;
   pointer-events: none;
 }
+html[data-theme="pro"] .cookie-banner::before {
+  background: linear-gradient(90deg, #5c678480, #50723c80);
+}
 
 .cookie-content {
   position: relative;
@@ -1411,6 +1414,12 @@ html[data-theme="pro"] .contact-item {
     var(--secondary-accent)
   );
   box-shadow: 0 10px 22px #ff4fb738;
+}
+html[data-theme="pro"] .cookie-btn.accept {
+  box-shadow: 0 10px 22px rgba(29, 38, 59, 0.16);
+}
+html[data-theme="pro"] .cookie-btn.accept:hover {
+  box-shadow: 0 14px 28px rgba(80, 114, 60, 0.18);
 }
 
 .cookie-btn.reject {
