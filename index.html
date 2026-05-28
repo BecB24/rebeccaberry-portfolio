@@ -309,31 +309,44 @@
           </div>
 
           <div class="project-card">
-            <div class="project-image">
+            <div class="project-image babygram-image">
               <img
-                src="images/vinyls.jpg"
-                alt="Vinyls Online project screenshot"
-                loading="lazy"
+                src="images/babygram-preview.png"
+                alt="Blurred preview of Babygram app"
               />
+
+              <div class="babygram-badge">
+                <span>COMING SOON</span>
+                <strong>Something new will be popping soon </strong>
+              </div>
             </div>
+
             <div class="project-info">
-              <h3>Vinyls Online</h3>
+              <h3>Babygram</h3>
               <p>
-                Description of the project and technologies used. Brief overview
-                of the development process and key features.
+                A private pregnancy and baby-sharing platform for sharing
+                milestones, countdowns, photo memories and fun baby games
+                through invite-only access.
               </p>
-              <a
-                href="http://vinylsonlinerebecca.atwebpages.com/"
-                class="project-link"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View Project →
-              </a>
+
+              <button class="project-link babygram-open">
+                In Development →
+              </button>
             </div>
           </div>
         </div>
       </section>
+      <!-- Babygram Modal -->
+
+      <div id="babygramModal" class="image-modal">
+        <span class="close-modal">&times;</span>
+
+        <img
+          class="modal-image"
+          src="images/babygram-full-preview.png"
+          alt="Babygram full preview"
+        />
+      </div>
     </main>
 
     <footer>
@@ -582,6 +595,24 @@
             month: "long",
             year: "numeric",
           });
+      });
+
+      const babygramBtn = document.querySelector(".babygram-open");
+      const babygramModal = document.getElementById("babygramModal");
+      const closeModal = document.querySelector(".close-modal");
+
+      babygramBtn.addEventListener("click", () => {
+        babygramModal.classList.add("active");
+      });
+
+      closeModal.addEventListener("click", () => {
+        babygramModal.classList.remove("active");
+      });
+
+      babygramModal.addEventListener("click", (e) => {
+        if (e.target === babygramModal) {
+          babygramModal.classList.remove("active");
+        }
       });
     </script>
   </body>
